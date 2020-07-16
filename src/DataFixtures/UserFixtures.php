@@ -41,7 +41,7 @@ class UserFixtures extends Fixture
             $admin = new User;
             $hash = $this->passwordEncoder->encodePassword($admin, 'admin'.$i);
             $admin
-             ->setEmail('admin'.$i.'mail.admin')
+             ->setEmail('admin'.$i.'@mail.admin')
              ->setRoles(['ROLE_ADMIN'])
              ->setPassword($hash)
              ->setPseudo($faker->userName())
