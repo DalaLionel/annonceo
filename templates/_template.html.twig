@@ -28,8 +28,8 @@
                 <a class="button is-primary" href="{{path('edit_password')}}">
                   <b>Modifier mot de passe</b>
               </a>
-                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MODO') %}
-                <a class="button is-dark has-text-primary" href="#">
+                {% if is_granted('ROLE_MODO') or is_granted('ROLE_MODO') %}
+                <a class="button is-dark has-text-primary" href="{{path('back_office')}}">
                     Back-Office
                 </a>
               {% endif %}
