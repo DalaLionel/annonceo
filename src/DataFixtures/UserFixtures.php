@@ -34,6 +34,8 @@ class UserFixtures extends Fixture
              ->setTelephone($faker->phoneNumber())
              ->setInscription($faker->dateTimeBetween('-1 month'));
             $manager->persist($user);
+            $reference = 'user '.$i;
+             $this->addReference($reference, $user);
         }
         
         for($i=0;$i<2;$i++)
@@ -49,6 +51,8 @@ class UserFixtures extends Fixture
              ->setNom($faker->name())
              ->setTelephone($faker->phoneNumber())
              ->setInscription($faker->dateTimeBetween('-1 month'));
+             $reference = 'admin '.$i;
+             $this->addReference($reference, $admin);
              $manager->persist($admin);
         }
 
@@ -65,6 +69,8 @@ class UserFixtures extends Fixture
              ->setNom($faker->name())
              ->setTelephone($faker->phoneNumber())
              ->setInscription($faker->dateTimeBetween('-1 month'));
+             $reference = 'modo '.$i;
+             $this->addReference($reference, $modo);
              $manager->persist($modo);
 
         }
