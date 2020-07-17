@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <a class="navbar-item" href="{{path('home')}}">
+        <p class="is-capitalized is-size-3 has-text-light">Annonceo</p>
+      </a>
+  
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+    
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+              {% if app.user %}
+                <a class="button is-primary" href="#">
+                    <b>Profil</b>
+                </a>
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MODO') %}
+                <a class="button is-dark has-text-primary" href="#">
+                    Back-Office
+                </a>
+              {% endif %}
+                <a class="button is-light" href="{{path('app_logout')}}">
+                    Déconnexion
+                </a>
+              {% else %}
+                <a class="button is-primary" href="{{path('app_register')}}">
+                    <strong>Inscription</strong>
+                </a>
+                <a class="button is-light" href="{{path('app_login')}}">
+                    Connexion
+                </a>
+              {% endif %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+{% endblock %}
