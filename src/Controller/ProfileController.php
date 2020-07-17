@@ -9,10 +9,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class ProfileController extends AbstractController
 {
-    
     /**
      * @Route("/profile/edit", name="edit_profile")
      */
@@ -33,13 +36,15 @@ class ProfileController extends AbstractController
     /**
      * @Route("/editpassword", name="edit_password")
      */
-    public function editPassword(Request $request, EntityManagerInterface $em )
+    public function editPassword(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface$passwordEncoder)
     {
         $user = $this->getUser();
         $form = $this->createForm(EditPasswordType::class, $user);
         $form->handleRequest($request);
         if ( $form->isSubmitted()&&$form->isValid())
         {
+            $user->setPassword($passwordEncoder->encodePassword($user, $form->get('plainPassword')->getData()));
+
             $em->flush();
             $this->addFlash('success','Votre mot de passe a bien été modifié');
         }
