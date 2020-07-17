@@ -22,9 +22,12 @@
         <div class="navbar-item">
           <div class="buttons">
               {% if app.user %}
-                <a class="button is-primary" href="#">
-                    <b>Profil</b>
+                <a class="button is-primary" href="{{path('edit_profile')}}">
+                    <b>Modifier profil</b>
                 </a>
+                <a class="button is-primary" href="{{path('edit_password')}}">
+                  <b>Modifier mot de passe</b>
+              </a>
                 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MODO') %}
                 <a class="button is-dark has-text-primary" href="#">
                     Back-Office

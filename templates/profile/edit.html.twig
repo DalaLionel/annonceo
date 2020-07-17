@@ -1,2 +1,14 @@
 {% extends '_template.html.twig' %}
 
+{% block body %}
+    {{ include('/includes/flashes.html.twig')}}
+    {{ form_start(ProfileEditForm)}}
+    {{ form_row(ProfileEditForm.email, {label:'Adresse Mail'})}}
+    {{ form_row(ProfileEditForm.pseudo, {label:'Pseudonyme'})}}
+    {{ form_row(ProfileEditForm.prenom, {label:'Pseudonyme'})}}
+    {{ form_row(ProfileEditForm.nom, {label:'Pseudonyme'})}}
+    {{ form_row(ProfileEditForm.telephone, {label:'Telephone'})}}
+    <button class="button is-success" type="submit">Editer Profil</button>
+    <a class="button" href="{{path('home')}}">Annuler</a>
+    {{ form_end(ProfileEditForm)}}
+{% endblock %}
